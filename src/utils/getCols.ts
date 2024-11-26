@@ -4,7 +4,8 @@ import {
   outsideWrapperId,
   leftColumnWidth,
   screenWidthMultiplier,
-  zoom2ColumnWidth
+  zoom2ColumnWidth,
+  monthWidth
 } from "@/constants";
 
 export const getCols = (zoom: number) => {
@@ -12,6 +13,8 @@ export const getCols = (zoom: number) => {
   const componentWidth = wrapperWidth - leftColumnWidth;
 
   switch (zoom) {
+    case -1:
+      return Math.ceil(componentWidth / monthWidth) * screenWidthMultiplier;
     case 1:
       return Math.ceil(componentWidth / dayWidth) * screenWidthMultiplier;
     case 2:

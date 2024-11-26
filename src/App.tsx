@@ -1,11 +1,38 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useCallback, useMemo, useState } from "react";
 import dayjs from "dayjs";
+import ruDayjsTranslations from "dayjs/locale/ru";
 import { createMockData } from "./mock/appMock";
 import { ParsedDatesRange } from "./utils/getDatesRange";
 import { ConfigFormValues, SchedulerProjectData } from "./types/global";
 import ConfigPanel from "./components/ConfigPanel";
 import { StyledSchedulerFrame } from "./styles";
 import { Scheduler } from ".";
+
+const langs = [
+  {
+    id: "ru",
+    lang: {
+      feelingEmpty: "I feel so empty...",
+      free: "Free",
+      loadNext: "Next",
+      loadPrevious: "Previous",
+      over: "over",
+      taken: "Taken",
+      topbar: {
+        filters: "Фильтры",
+        next: "вперед",
+        prev: "назад",
+        today: "Сегодня",
+        view: "Вид"
+      },
+      search: "Поиск",
+      week: "Неделя"
+    },
+    translateCode: "ru-RU",
+    dayjsTranslations: { ...ruDayjsTranslations, weekdaysShort: ruDayjsTranslations.weekdaysMin }
+  }
+];
 
 function App() {
   const [values, setValues] = useState<ConfigFormValues>({
@@ -23,6 +50,8 @@ function App() {
     () => createMockData(+peopleCount, +yearsCovered, +projectsPerYear),
     [peopleCount, projectsPerYear, yearsCovered]
   );
+
+  // const mocked = getSimpleMockData();
 
   const [range, setRange] = useState<ParsedDatesRange>({
     startDate: new Date(),
@@ -67,10 +96,12 @@ function App() {
           onTileClick={handleTileClick}
           onFilterData={handleFilterData}
           config={{
-            zoom: 1,
+            zoom: -1,
             maxRecordsPerPage: maxRecordsPerPage,
             maxZoom: 1,
-            showThemeToggle: true
+            filterButtonState: -1,
+            lang: "ru",
+            translations: langs
           }}
           onItemClick={(data) => console.log("clicked: ", data)}
         />

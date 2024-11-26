@@ -16,6 +16,9 @@ export const getDatesRange = (date: dayjs.Dayjs, zoom: number): DatesRange => {
 
   let startDate;
   switch (zoom) {
+    case -1:
+      startDate = date.subtract(colsOffset, "months");
+      break;
     case 1:
       startDate = date.subtract(colsOffset, "days");
       break;
@@ -29,6 +32,9 @@ export const getDatesRange = (date: dayjs.Dayjs, zoom: number): DatesRange => {
 
   let endDate;
   switch (zoom) {
+    case -1:
+      endDate = date.add(colsOffset, "months");
+      break;
     case 1:
       endDate = date.add(colsOffset, "days");
       break;

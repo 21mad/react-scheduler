@@ -9,6 +9,8 @@ import { drawYearsOnTop } from "./drawRows/drawYearsOnTop";
 import { drawZoom2DaysInMiddle } from "./drawRows/drawZoom2DaysInMiddle";
 import { drawZoom2MonthsOnTop } from "./drawRows/DrawZoom2MonthsOnTop";
 import { drawZoom2HoursOnBottom } from "./drawRows/drawZoom2HoursOnBottom";
+import { drawYearsOnTopYearView } from "./drawRows/drawYearsOnTopYearView";
+import { drawMonthsOnBottomYearView } from "./drawRows/drawMonthsOnBottomView";
 
 export const drawHeader = (
   ctx: CanvasRenderingContext2D,
@@ -20,6 +22,10 @@ export const drawHeader = (
   theme: Theme
 ) => {
   switch (zoom) {
+    case -1:
+      drawYearsOnTopYearView(ctx, startDate, dayOfYear, theme);
+      drawMonthsOnBottomYearView(ctx, cols, startDate, theme);
+      break;
     case 0:
       drawYearsOnTop(ctx, startDate, dayOfYear, theme);
       drawMonthsInMiddle(ctx, cols, startDate, theme);

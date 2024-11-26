@@ -90,3 +90,157 @@ export const createMockData = (
   }
   return schedulerData;
 };
+// export const getSimpleMockData = () => {
+//   let today = new Date();
+//   today.setMilliseconds(0);
+//   today.setSeconds(0);
+//   today.setMinutes(0);
+//   today.setHours(0);
+//   today = today.getTime();
+
+//   const day = 1000 * 60 * 60 * 24;
+//   return [
+//     {
+//       id: "070ac5b5-8369-4cd2-8ba2-0a209130cc60",
+//       label: {
+//         icon: "https://dummyimage.com/300",
+//         title: "Иванов И.И.",
+//         subtitle: "Frontend Developer"
+//       },
+//       data: [
+//         {
+//           id: "06e5c0a6-3d8f-4b5e-a6d5-4emb7d7d7d7d",
+//           // startDate: new Date("2023-04-13T15:31:24.272Z"),
+//           // endDate: new Date("2023-08-28T10:28:22.649Z"),
+//           startDate: today,
+//           endDate: today + day,
+//           occupancy: 3600,
+//           title: "Задача 1.1",
+//           subtitle: "Подзаголовок",
+//           description: "Описание",
+//           bgColor: "rgb(254,165,177)"
+//         },
+//         {
+//           id: "22fbe237-6344-4c8e-affb-64a1750f33bd",
+//           startDate: today + 8 * day,
+//           endDate: today + 11 * day,
+//           occupancy: 2852,
+//           title: "Задача 1.2",
+//           subtitle: "Подзаголовок",
+//           description: "Описание задачи",
+//           bgColor: "rgb(254,165,177)"
+//         }
+//       ]
+//     },
+//     {
+//       id: "070ac5b5-8369-4cd2-8ba2-0a209130cc61",
+//       label: {
+//         icon: "https://dummyimage.com/300",
+//         title: "Петров П.П.",
+//         subtitle: "Backend Developer"
+//       },
+//       data: [
+//         {
+//           id: "06e5c0a6-3d8f-4b5e-a6d5-4e9c71ed7d7d",
+//           startDate: today - day,
+//           endDate: today + 3 * day,
+//           occupancy: 3600,
+//           title: "Задача 2",
+//           subtitle: "Подзаголовок",
+//           description: "Описание задачи",
+//           bgColor: "rgb(204,165,177)"
+//         }
+//       ]
+//     },
+//     {
+//       id: "070ac5b5-8369-4cd2-8ba2-0a209130cc62",
+//       label: {
+//         icon: "https://dummyimage.com/300",
+//         title: "Сидоров С.С.",
+//         subtitle: "Backend Developer"
+//       },
+//       data: [
+//         {
+//           id: "06e5c0a6-3d8f-4b5e-a6d5-4e9ced7dwd7d",
+//           startDate: today + 2 * day,
+//           endDate: today + 10 * day,
+//           occupancy: 3600,
+//           title: "Задача 3",
+//           subtitle: "Подзаголовок",
+//           description: "Описание задачи",
+//           bgColor: "rgb(104,165,177)"
+//         }
+//       ]
+//     },
+//     {
+//       id: "070ac5b5-8369-4cd2-8ba2-0a209130cc63",
+//       label: {
+//         icon: "https://dummyimage.com/300",
+//         title: "Васин В.В.",
+//         subtitle: "Backend Developer"
+//       },
+//       data: [
+//         {
+//           id: "06e5c0a6-3d8f-4b5e-a1d5-4e9c7d7d7d7d",
+//           startDate: today + day,
+//           endDate: today + 2 * day,
+//           occupancy: 3600,
+//           title: "Задача 4.1",
+//           subtitle: "Подзаголовок",
+//           description: "Описание задачи",
+//           bgColor: "rgb(104,105,177)"
+//         },
+//         {
+//           id: "06e5c0a6-3d8f-425e-a6d5-4e9c7d7d7d71",
+//           startDate: today + 3 * day,
+//           endDate: today + 4 * day,
+//           occupancy: 3600,
+//           title: "Задача 4.2",
+//           subtitle: "Подзаголовок",
+//           description: "Описание задачи",
+//           bgColor: "rgb(104,105,177)"
+//         },
+//         {
+//           id: "06e5c0a6-3d8f-1b5e-a6d5-4e9c7d7d7d72",
+//           startDate: today + 10 * day,
+//           endDate: today + 13 * day,
+//           occupancy: 3600,
+//           title: "Задача 4.3",
+//           subtitle: "Подзаголовок",
+//           description: "Описание задачи",
+//           bgColor: "rgb(104,105,177)"
+//         }
+//       ]
+//     },
+//     {
+//       id: "070ac5b5-8369-4cd2-8ba2-0a209130cc64",
+//       label: {
+//         icon: "https://dummyimage.com/300",
+//         title: "Макаров М.М.",
+//         subtitle: "Frontend Developer"
+//       },
+//       data: [
+//         {
+//           id: "06e5c0a6-3d8f-4b5e-a6d5-4e9c7d7d7d7d",
+//           startDate: today + 2 * day,
+//           endDate: today + 10 * day,
+//           occupancy: 3600,
+//           title: "Задача 5.1",
+//           subtitle: "Подзаголовок",
+//           description: "Описание задачи",
+//           bgColor: "rgb(104,105,177)"
+//         },
+//         {
+//           id: "06e5c0a6-3d8f-4b5e-a6d5-4e9c7d7l7d71",
+//           startDate: today + 363 * day,
+//           endDate: today + 366 * day,
+//           occupancy: 3600,
+//           title: "Задача 5.2",
+//           subtitle: "Подзаголовок",
+//           description: "Описание задачи",
+//           bgColor: "rgb(104,105,177)"
+//         }
+//       ]
+//     }
+//   ];
+// };

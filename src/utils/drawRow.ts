@@ -23,7 +23,7 @@ export const drawRow = (config: DrawRowConfig, theme: Theme) => {
   ctx.setLineDash([]);
 
   if (label && font && textYPos) {
-    ctx.fillStyle = theme.colors.gridBackground;
+    ctx.fillStyle = isBottomRow && fillStyle ? fillStyle : theme.colors.gridBackground;
     ctx.fillRect(x, y, width, height);
 
     if (labelBetweenCells) {

@@ -12,6 +12,7 @@ import { getDatesRange, getParsedDatesRange } from "@/utils/getDatesRange";
 import { parseDay } from "@/utils/dates";
 import { getCols, getVisibleCols } from "@/utils/getCols";
 import {
+  buttonMonthsJump,
   buttonWeeksJump,
   hoursInDay,
   outsideWrapperId,
@@ -42,7 +43,7 @@ const CalendarProvider = ({
   const {
     zoom: configZoom,
     maxRecordsPerPage = 50,
-    minZoom = 0,
+    minZoom = -1,
     maxZoom = allZoomLevel[allZoomLevel.length - 1]
   } = config;
   const [zoom, setZoom] = useState<ZoomLevel>(configZoom);
@@ -101,6 +102,9 @@ const CalendarProvider = ({
       const cols = getVisibleCols(zoom);
       let offset: number;
       switch (zoom) {
+        case -1:
+          offset = cols * 31;
+          break;
         case 0:
           offset = cols * 7;
           break;
@@ -162,7 +166,11 @@ const CalendarProvider = ({
     if (isLoading) return;
 
     setDate((prev) =>
-      zoom === 2 ? prev.add(zoom2ButtonJump, "hours") : prev.add(buttonWeeksJump, "weeks")
+      zoom === -1
+        ? prev.add(buttonMonthsJump, "months")
+        : zoom === 2
+        ? prev.add(zoom2ButtonJump, "hours")
+        : prev.add(buttonWeeksJump, "weeks")
     );
     onRangeChange?.(range);
   };
@@ -180,7 +188,11 @@ const CalendarProvider = ({
     if (isLoading) return;
 
     setDate((prev) =>
-      zoom === 2 ? prev.subtract(zoom2ButtonJump, "hours") : prev.subtract(buttonWeeksJump, "weeks")
+      zoom === -1
+        ? prev.subtract(buttonMonthsJump, "months")
+        : zoom === 2
+        ? prev.subtract(zoom2ButtonJump, "hours")
+        : prev.subtract(buttonWeeksJump, "weeks")
     );
     onRangeChange?.(range);
   };
