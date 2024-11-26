@@ -50,7 +50,7 @@
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
-      "yarn run lint"
+      "npm run lint"
     ]
   },
   "dependencies": {
