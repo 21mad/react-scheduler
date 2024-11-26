@@ -178,7 +178,9 @@ const mockedSchedulerData: SchedulerData = [
 
 | Property Name                        | Type               | Default     | Description                                                                                                                                                            |
 | ------------------------------------ | ------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| zoom                                 | `0` or `1` or `2`  | 0           | `0` - display grid divided into weeks `1` - display grid divided into days `2` - display grid divided into hours                                                       |
+| zoom                                 | `-1` or `0` or `1` or `2`  | 0           | `-1` - display grid divided into months `0` - display grid divided into weeks `1` - display grid divided into days `2` - display grid divided into hours                                                       |
+| minZoom                    | `number`           | -1           | minimum zoom value |
+| maxZoom                    | `number`           | 2           | maximum zoom value |
 | filterButtonState                    | `number`           | 0           | `< 0` - hides filter button, `0` - state for when filters were not set, `> 0` - state for when some filters were set (allows to also handle `onClearFilterData` event) |
 | maxRecordsPerPage                    | `number`           | 50          | number of items from `SchedulerData` visible per page                                                                                                                  |
 | lang                                 | `en`, `lt` or `pl` | en          | scheduler's language                                                                                                                                                   |
@@ -263,6 +265,7 @@ const langs: LocaleType[] = [
 ##### Scheduler Data
 
 array of chart rows with shape of
+
 | Property Name | Type | Description |
 | -------- | --------------------- | -------------------------------- |
 | id | `string` | unique row id |
@@ -272,6 +275,7 @@ array of chart rows with shape of
 ##### Left Colum Item Data
 
 data that is accessible as argument of `onItemClick` callback
+
 | Property Name | Type | Description |
 | -------- | --------------------- | -------------------------------- |
 | id | `string` | unique row id |
@@ -280,6 +284,7 @@ data that is accessible as argument of `onItemClick` callback
 ##### Resource Item
 
 item that will be visible on the grid as tile and that will be accessible as argument of `onTileClick` event
+
 | Property Name | Type | Description |
 | ----------- | ----------------- | ------------------------------------------------------------------------------------------------------- |
 | id | `string` | unique resource id |
@@ -299,8 +304,8 @@ item that will be visible on the grid as tile and that will be accessible as arg
 // remix.config.js
 /** @type  {import('@remix-run/dev').AppConfig} */
 module.exports = {
-	// ...
-	serverDependenciesToBundle: [..., "@bitnoi.se/react-scheduler"],
+ // ...
+ serverDependenciesToBundle: [..., "@bitnoi.se/react-scheduler"],
 };
 ```
 
@@ -311,7 +316,7 @@ module.exports = {
 import { Scheduler, SchedulerProps } from "@bitnoi.se/react-scheduler";
 
 default export function SchedulerClient(props: SchedulerProps) {
-	return <Scheduler {...props} />;
+ return <Scheduler {...props} />;
 }
 
 ```
