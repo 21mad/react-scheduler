@@ -93,12 +93,12 @@ function App() {
           onRangeChange={handleRangeChange}
           data={filteredData}
           isLoading={false}
-          onTileClick={handleTileClick}
+          onTileClick={(data) => console.log("clicked: ", data)}
           onFilterData={handleFilterData}
           config={{
             zoom: -1,
             maxRecordsPerPage: maxRecordsPerPage,
-            maxZoom: 1,
+            maxZoom: 2,
             filterButtonState: -1,
             lang: "ru",
             translations: langs

@@ -30,12 +30,6 @@ export const StyledText = styled.p<StyledTextProps>`
   ${truncate}
   display: inline;
   font-weight: ${({ bold }) => (bold ? "600" : "400")};
-  &:first-child {
-    &::after {
-      content: "|";
-      margin: 0 3px;
-    }
-  }
 `;
 
 export const StyledDescription = styled.p`
@@ -46,5 +40,6 @@ export const StyledDescription = styled.p`
 export const StyledStickyWrapper = styled.div`
   position: sticky;
   left: ${leftColumnWidth + 16}px;
-  overflow: hidden;
+  overflow: auto;
+  text-overflow: ellipsis;
 `;
