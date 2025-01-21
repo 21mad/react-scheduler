@@ -18,7 +18,7 @@ export const drawMonthsOnBottomYearView = (
   startDate: Day,
   theme: Theme
 ) => {
-  let xPos = -(startDate.dayOfMonth - 1) * singleDayWidthInYear;
+  let xPos = 0;
   const yPos = headerMonthHeightYearView;
   const monthIndex = startDate.month;
   let index = monthIndex;

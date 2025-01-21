@@ -25,6 +25,8 @@ const Tile: FC<TileProps> = ({ row, data, zoom, onTileClick }) => {
     zoom
   );
 
+  // console.log(`Tile properties: ${data.title} `, { y, x, width });
+
   const { colors } = useTheme();
 
   return (

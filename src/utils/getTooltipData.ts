@@ -1,7 +1,15 @@
 import dayjs from "dayjs";
-import { weekWidth, boxHeight, dayWidth, zoom2ColumnWidth, monthWidth } from "@/constants";
+import {
+  weekWidth,
+  boxHeight,
+  dayWidth,
+  zoom2ColumnWidth,
+  monthWidth,
+  singleDayWidthInYear
+} from "@/constants";
 import { Day, Coords, SchedulerProjectData, TooltipData, ZoomLevel } from "@/types/global";
 import { getOccupancy } from "./getOccupancy";
+import { getDaysInMonths } from "./dates";
 
 export const getTooltipData = (
   startDate: Day,
@@ -31,10 +39,7 @@ export const getTooltipData = (
       currBoxWidth = zoom2ColumnWidth;
       break;
   }
-  const column =
-    zoom === 2
-      ? Math.ceil((cursorPosition.x - 0.5 * currBoxWidth) / currBoxWidth)
-      : Math.ceil(cursorPosition.x / currBoxWidth);
+  const column = getCurrentColumn(startDate, currBoxWidth, cursorPosition, zoom);
   const focusedDate = dayjs(
     `${startDate.year}-${startDate.month + 1}-${startDate.dayOfMonth}T${startDate.hour}:00:00`
   ).add(column - 1, timeUnit);
@@ -47,6 +52,7 @@ export const getTooltipData = (
   const xPos = zoom === 2 ? (column + 1) * currBoxWidth : column * currBoxWidth;
   const yPos = (rowPosition - 1) * boxHeight + boxHeight;
 
+  // TODO: set occupancy for full year view
   const disposition = getOccupancy(
     resourcesData[resourceIndex],
     resourceIndex,
@@ -56,3 +62,24 @@ export const getTooltipData = (
   );
   return { coords: { x: xPos, y: yPos }, resourceIndex, disposition };
 };
+
+function getCurrentColumn(
+  startDate: Day,
+  currBoxWidth: number,
+  cursorPosition: Coords,
+  zoom: ZoomLevel
+) {
+  if (zoom === -1) {
+    let columnMonth = 0;
+    let currentMonthsWidth = getDaysInMonths(startDate, columnMonth) * singleDayWidthInYear;
+    while (currentMonthsWidth < cursorPosition.x) {
+      columnMonth++;
+      currentMonthsWidth += getDaysInMonths(startDate, columnMonth + 1) * singleDayWidthInYear;
+    }
+    return ++columnMonth;
+  } else if (zoom === 2) {
+    return Math.ceil((cursorPosition.x - 0.5 * currBoxWidth) / currBoxWidth);
+  } else {
+    return Math.ceil(cursorPosition.x / currBoxWidth);
+  }
+}

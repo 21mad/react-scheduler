@@ -12,7 +12,7 @@ export const drawFullYearlyView = (
   startDate: Day,
   theme: Theme
 ) => {
-  let xPos = -(startDate.dayOfMonth - 1) * singleDayWidthInYear;
+  let xPos = 0;
 
   for (let i = 0; i <= cols; i++) {
     const month = dayjs(`${startDate.year}-${startDate.month + 1}-${startDate.dayOfMonth}`).add(

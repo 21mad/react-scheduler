@@ -13,12 +13,12 @@ const langs = [
   {
     id: "ru",
     lang: {
-      feelingEmpty: "I feel so empty...",
-      free: "Free",
+      feelingEmpty: "Нет данных",
+      free: "Свободно",
       loadNext: "Next",
       loadPrevious: "Previous",
       over: "over",
-      taken: "Taken",
+      taken: "Занято",
       topbar: {
         filters: "Фильтры",
         next: "вперед",

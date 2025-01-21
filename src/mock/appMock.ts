@@ -90,6 +90,7 @@ export const createMockData = (
   }
   return schedulerData;
 };
+export const getSimpleMockData = () => [];
 // export const getSimpleMockData = () => {
 //   let today = new Date();
 //   today.setMilliseconds(0);
@@ -116,6 +117,18 @@ export const createMockData = (
 //           endDate: today + day,
 //           occupancy: 3600,
 //           title: "Задача 1.1",
+//           subtitle: "Подзаголовок",
+//           description: "Описание",
+//           bgColor: "rgb(254,165,177)"
+//         },
+//         {
+//           id: "06e5c0a6-3d8f-4b5e-a6d5-4emb7d7d7d79",
+//           // startDate: new Date("2023-04-13T15:31:24.272Z"),
+//           // endDate: new Date("2023-08-28T10:28:22.649Z"),
+//           startDate: '2025-01-01',
+//           endDate: '2025-02-28',
+//           occupancy: 3600,
+//           title: "Задача 1.3",
 //           subtitle: "Подзаголовок",
 //           description: "Описание",
 //           bgColor: "rgb(254,165,177)"

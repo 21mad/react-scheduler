@@ -17,7 +17,8 @@ export const getDatesRange = (date: dayjs.Dayjs, zoom: number): DatesRange => {
   let startDate;
   switch (zoom) {
     case -1:
-      startDate = date.subtract(colsOffset, "months");
+      // startDate = date.subtract(colsOffset, "months").set("date", 1).set("hour", 0);
+      startDate = date.subtract(colsOffset, "months").set("date", 1).set("hour", 0);
       break;
     case 1:
       startDate = date.subtract(colsOffset, "days");

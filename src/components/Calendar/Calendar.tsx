@@ -157,6 +157,7 @@ export const Calendar: FC<CalendarProps> = ({
           </StyledEmptyBoxWrapper>
         )}
         {showTooltip && isVisible && tooltipData?.resourceIndex > -1 && (
+          // TODO: custom tooltip
           <Tooltip tooltipData={tooltipData} zoom={zoom} />
         )}
       </StyledInnerWrapper>
