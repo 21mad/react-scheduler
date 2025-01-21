@@ -40,6 +40,6 @@ export const StyledDescription = styled.p`
 export const StyledStickyWrapper = styled.div`
   position: sticky;
   left: ${leftColumnWidth + 16}px;
-  overflow: auto;
+  overflow: hidden;
   text-overflow: ellipsis;
 `;
