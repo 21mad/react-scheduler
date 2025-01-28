@@ -5,6 +5,7 @@ export type LeftColumnItemProps = {
   item: SchedulerRowLabel;
   rows: number;
   onItemClick?: (data: SchedulerItemClickData) => void;
+  wrapItemTitle?: boolean;
 };
 
 export type StyledTextProps = {

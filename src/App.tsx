@@ -101,7 +101,8 @@ function App() {
             maxZoom: 2,
             filterButtonState: -1,
             lang: "ru",
-            translations: langs
+            translations: langs,
+            wrapItemTitle: false
           }}
           onItemClick={(data) => console.log("clicked: ", data)}
         />

@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { useLanguage } from "@/context/LocaleProvider";
+import { useCalendar } from "@/context/CalendarProvider";
 import Icon from "../Icon";
 import PaginationButton from "../PaginationButton/PaginationButton";
 import { StyledInput, StyledInputWrapper, StyledLeftColumnHeader, StyledWrapper } from "./styles";
@@ -19,6 +20,8 @@ const LeftColumn: FC<LeftColumnProps> = ({
 }) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const { search } = useLanguage();
+  const { config } = useCalendar();
+  const { wrapItemTitle = true } = config;
 
   const toggleFocus = () => setIsInputFocused((prev) => !prev);
 
@@ -51,6 +54,7 @@ const LeftColumn: FC<LeftColumnProps> = ({
           key={item.id}
           rows={rows[index]}
           onItemClick={onItemClick}
+          wrapItemTitle={wrapItemTitle}
         />
       ))}
       <PaginationButton
