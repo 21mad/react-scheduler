@@ -83,6 +83,8 @@ const Tile: FC<TileProps> = ({ row, data, zoom, onTileClick }) => {
         backgroundColor: colors.defaultTile
       }}
       disableHoverListener={!showTooltip}
+      disableInteractive
+      leaveTouchDelay={500}
       placement="top"
       arrow={true}
       slotProps={{

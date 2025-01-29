@@ -31,13 +31,13 @@ export const Calendar: FC<CalendarProps> = ({
   const [searchPhrase, setSearchPhrase] = useState("");
   const {
     zoom,
-    startDate,
-    config: { includeTakenHoursOnWeekendsInDayView, showThemeToggle }
+    // startDate,
+    config: { showThemeToggle }
   } = useCalendar();
   const gridRef = useRef<HTMLDivElement>(null);
   const {
     page,
-    projectsPerPerson,
+    // projectsPerPerson,
     totalRowsPerPage,
     rowsPerItem,
     currentPageNum,
