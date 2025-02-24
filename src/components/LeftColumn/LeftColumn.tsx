@@ -15,6 +15,7 @@ const LeftColumn: FC<LeftColumnProps> = ({
   pageNum,
   pagesAmount,
   searchInputValue,
+  setSearchInputValue,
   onSearchInputChange,
   onItemClick,
   outsideWrapperRef
@@ -38,6 +39,13 @@ const LeftColumn: FC<LeftColumnProps> = ({
             onBlur={toggleFocus}
           />
           <Icon iconName="search" />
+          {searchInputValue && (
+            <div
+              onClick={() => setSearchInputValue("")}
+              style={{ cursor: "pointer", width: "24px", height: "24px", marginRight: "12px" }}>
+              <Icon iconName="close" fill="rgb(119, 119, 119)" />
+            </div>
+          )}
         </StyledInputWrapper>
         <PaginationButton
           intent="previous"

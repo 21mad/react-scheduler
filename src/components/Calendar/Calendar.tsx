@@ -133,6 +133,7 @@ export const Calendar: FC<CalendarProps> = ({
         onLoadNext={next}
         onLoadPrevious={previous}
         searchInputValue={searchPhrase}
+        setSearchInputValue={setSearchPhrase}
         onSearchInputChange={handleSearch}
         onItemClick={onItemClick}
         outsideWrapperRef={outsideWrapperRef}

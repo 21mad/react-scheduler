@@ -8,6 +8,7 @@ export type LeftColumnProps = {
   onLoadNext: () => void;
   onLoadPrevious: () => void;
   searchInputValue: string;
+  setSearchInputValue: React.Dispatch<React.SetStateAction<string>>;
   onSearchInputChange: React.ChangeEventHandler<HTMLInputElement>;
   onItemClick?: (data: SchedulerItemClickData) => void;
   outsideWrapperRef: React.RefObject<HTMLDivElement>;
