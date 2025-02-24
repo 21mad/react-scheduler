@@ -51,6 +51,7 @@ function App() {
     [peopleCount, projectsPerYear, yearsCovered]
   );
 
+  // const mocked = [];
   // const mocked = getSimpleMockData();
 
   // const mocked = [

@@ -90,6 +90,7 @@ const Scheduler = ({
                   topBarWidth={topBarWidth ?? 0}
                   onItemClick={onItemClick}
                   toggleTheme={toggleTheme}
+                  outsideWrapperRef={outsideWrapperRef}
                 />
               </StyledInnerWrapper>
             </StyledOutsideWrapper>

@@ -16,7 +16,8 @@ const LeftColumn: FC<LeftColumnProps> = ({
   pagesAmount,
   searchInputValue,
   onSearchInputChange,
-  onItemClick
+  onItemClick,
+  outsideWrapperRef
 }) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const { search } = useLanguage();
@@ -26,7 +27,7 @@ const LeftColumn: FC<LeftColumnProps> = ({
   const toggleFocus = () => setIsInputFocused((prev) => !prev);
 
   return (
-    <StyledWrapper>
+    <StyledWrapper style={{ minHeight: outsideWrapperRef.current?.clientHeight }}>
       <StyledLeftColumnHeader>
         <StyledInputWrapper isFocused={isInputFocused}>
           <StyledInput

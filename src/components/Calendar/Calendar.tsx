@@ -23,7 +23,8 @@ export const Calendar: FC<CalendarProps> = ({
   onTileClick,
   onItemClick,
   toggleTheme,
-  topBarWidth
+  topBarWidth,
+  outsideWrapperRef
 }) => {
   // const [tooltipData, setTooltipData] = useState<TooltipData>(initialTooltipData);
   const [filteredData, setFilteredData] = useState(data);
@@ -134,6 +135,7 @@ export const Calendar: FC<CalendarProps> = ({
         searchInputValue={searchPhrase}
         onSearchInputChange={handleSearch}
         onItemClick={onItemClick}
+        outsideWrapperRef={outsideWrapperRef}
       />
       <StyledInnerWrapper>
         <Header
