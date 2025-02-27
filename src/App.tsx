@@ -215,7 +215,8 @@ function App() {
             lang: "ru",
             translations: langs,
             wrapItemTitle: false,
-            showTooltip: true
+            showTooltip: true,
+            autoPageLoad: false
           }}
           onItemClick={(data) => console.log("clicked: ", data)}
         />

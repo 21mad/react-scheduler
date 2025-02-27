@@ -190,6 +190,7 @@ const mockedSchedulerData: SchedulerData = [
 | showThemeToggle                      | `boolean`                       | `false`     | show toggle button to switch between light/dark mode                                                                                                                           |
 | defaultTheme                         | `light` or `dark`             | `light`     | scheduler's default theme                                                                                                                                                      |
 | wrapItemTitle                        | boolean                           | true          | wrap item title in left column                                                                                                                                                 |
+| autoPageLoad                         | boolean                           | true          | load pages automatically when scrolling                                                                                                                                        |
 
 #### Translation object example
 

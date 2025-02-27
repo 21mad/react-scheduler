@@ -21,6 +21,8 @@ const Topbar: FC<TopbarProps> = ({ width, showThemeToggle, toggleTheme }) => {
     config,
     handleGoNext,
     handleGoPrev,
+    handleScrollNext,
+    handleScrollPrev,
     handleGoToday,
     zoomIn,
     zoomOut,
@@ -30,7 +32,7 @@ const Topbar: FC<TopbarProps> = ({ width, showThemeToggle, toggleTheme }) => {
     onClearFilterData
   } = useCalendar();
   const { colors } = useTheme();
-  const { filterButtonState = -1 } = config;
+  const { autoPageLoad = true, filterButtonState = -1 } = config;
 
   const handleClearFilters: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
@@ -57,12 +59,12 @@ const Topbar: FC<TopbarProps> = ({ width, showThemeToggle, toggleTheme }) => {
         )}
       </Filters>
       <NavigationWrapper>
-        <NavBtn disabled={!data?.length} onClick={handleGoPrev}>
+        <NavBtn disabled={!data?.length} onClick={autoPageLoad ? handleGoPrev : handleScrollPrev}>
           <Icon iconName="arrowLeft" height="15" fill={colors.textPrimary} />
           {topbar.prev}
         </NavBtn>
         <Today onClick={handleGoToday}>{topbar.today}</Today>
-        <NavBtn disabled={!data?.length} onClick={handleGoNext}>
+        <NavBtn disabled={!data?.length} onClick={autoPageLoad ? handleGoNext : handleScrollNext}>
           {topbar.next}
           <Icon iconName="arrowRight" height="15" fill={colors.textPrimary} />
         </NavBtn>
