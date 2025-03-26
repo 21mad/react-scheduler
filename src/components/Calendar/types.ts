@@ -6,6 +6,7 @@ export type CalendarProps = {
   onTileClick?: (data: SchedulerProjectData) => void;
   onItemClick?: (data: SchedulerItemClickData) => void;
   toggleTheme?: () => void;
+  outsideWrapperRef: React.RefObject<HTMLDivElement>;
 };
 
 export type StyledSpanProps = {

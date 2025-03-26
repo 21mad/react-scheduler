@@ -8,9 +8,9 @@
   </p>
   <div align="center">
     <a href="https://bit.ly/react_scheduler">Youtube Tutorial</a>
-    <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+    <span>  •  </span>
     <a href="https://www.npmjs.com/package/@bitnoi.se/react-scheduler">npm</a>
-    <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+    <span>  •  </span>
     <a href="https://github.com/Bitnoise/react-scheduler/issues/new">Report an issue</a>
   </div>
 </div>
@@ -162,33 +162,35 @@ const mockedSchedulerData: SchedulerData = [
 
 ##### Scheduler Component Props
 
-| Property Name     | Type       | Arguments                         | Description                                                                                                                       |
-| ----------------- | ---------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| isLoading         | `boolean`  | -                                 | shows loading indicators on scheduler                                                                                             |
-| onRangeChange     | `function` | updated `startDate` and `endDate` | runs whenever user reaches end of currently rendered canvas                                                                       |
-| onTileClick       | `function` | clicked resource data             | detects resource click                                                                                                            |
-| onItemClick       | `function` | clicked left column item data     | detects item click on left column                                                                                                 |
-| onFilterData      | `function` | -                                 | callback firing when filter button was clicked                                                                                    |
-| onClearFilterData | `function` | -                                 | callback firing when clear filters button was clicked (clearing button is visible **only** when filterButtonState is set to `>0`) |
-| config            | `Config`   | -                                 | object with scheduler config properties                                                                                           |
+| Property Name     | Type         | Arguments                             | Description                                                                                                                              |
+| ----------------- | ------------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| isLoading         | `boolean`  | -                                     | shows loading indicators on scheduler                                                                                                    |
+| onRangeChange     | `function` | updated `startDate` and `endDate` | runs whenever user reaches end of currently rendered canvas                                                                              |
+| onTileClick       | `function` | clicked resource data                 | detects resource click                                                                                                                   |
+| onItemClick       | `function` | clicked left column item data         | detects item click on left column                                                                                                        |
+| onFilterData      | `function` | -                                     | callback firing when filter button was clicked                                                                                           |
+| onClearFilterData | `function` | -                                     | callback firing when clear filters button was clicked (clearing button is visible**only** when filterButtonState is set to `>0`) |
+| config            | `Config`   | -                                     | object with scheduler config properties                                                                                                  |
 
 ##### Scheduler Config Object
 
 ---
 
-| Property Name                        | Type               | Default     | Description                                                                                                                                                            |
-| ------------------------------------ | ------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| zoom                                 | `-1` or `0` or `1` or `2`  | 0           | `-1` - display grid divided into months `0` - display grid divided into weeks `1` - display grid divided into days `2` - display grid divided into hours                                                       |
-| minZoom                    | `number`           | -1           | minimum zoom value |
-| maxZoom                    | `number`           | 2           | maximum zoom value |
-| filterButtonState                    | `number`           | 0           | `< 0` - hides filter button, `0` - state for when filters were not set, `> 0` - state for when some filters were set (allows to also handle `onClearFilterData` event) |
-| maxRecordsPerPage                    | `number`           | 50          | number of items from `SchedulerData` visible per page                                                                                                                  |
-| lang                                 | `en`, `lt` or `pl` | en          | scheduler's language                                                                                                                                                   |
-| includeTakenHoursOnWeekendsInDayView | `boolean`          | `false`     | show weekends as taken when given resource is longer than a week                                                                                                       |
-| showTooltip                          | `boolean`          | `true`      | show tooltip when hovering over tiles                                                                                                                                  |
-| translations                         | `LocaleType[]`     | `undefined` | option to add specific langs translations                                                                                                                              |
-| showThemeToggle                      | `boolean`          | `false`     | show toggle button to switch between light/dark mode                                                                                                                   |
-| defaultTheme                         | `light` or `dark`  | `light`     | scheduler's default theme                                                                                                                                              |
+| Property Name                        | Type                              | Default       | Description                                                                                                                                                                    |
+| ------------------------------------ | --------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| zoom                                 | `-1` or `0` or `1` or `2` | 0             | `-1` - display grid divided into months `0` - display grid divided into weeks `1` - display grid divided into days `2` - display grid divided into hours               |
+| minZoom                              | `number`                        | -1            | minimum zoom value                                                                                                                                                             |
+| maxZoom                              | `number`                        | 2             | maximum zoom value                                                                                                                                                             |
+| filterButtonState                    | `number`                        | 0             | `< 0` - hides filter button, `0` - state for when filters were not set, `> 0` - state for when some filters were set (allows to also handle `onClearFilterData` event) |
+| maxRecordsPerPage                    | `number`                        | 50            | number of items from `SchedulerData` visible per page                                                                                                                        |
+| lang                                 | `en`, `lt` or `pl`          | en            | scheduler's language                                                                                                                                                           |
+| includeTakenHoursOnWeekendsInDayView | `boolean`                       | `false`     | show weekends as taken when given resource is longer than a week                                                                                                               |
+| showTooltip                          | `boolean`                       | `true`      | show tooltip when hovering over tiles                                                                                                                                          |
+| translations                         | `LocaleType[]`                  | `undefined` | option to add specific langs translations                                                                                                                                      |
+| showThemeToggle                      | `boolean`                       | `false`     | show toggle button to switch between light/dark mode                                                                                                                           |
+| defaultTheme                         | `light` or `dark`             | `light`     | scheduler's default theme                                                                                                                                                      |
+| wrapItemTitle                        | boolean                           | true          | wrap item title in left column                                                                                                                                                 |
+| autoPageLoad                         | boolean                           | true          | load pages automatically when scrolling                                                                                                                                        |
 
 #### Translation object example
 
@@ -231,8 +233,8 @@ const langs: LocaleType[] = [
 
 #### Scheduler LocaleType Object
 
-| Property Name     | Type                       | Description                        |
-| ----------------- | -------------------------- | ---------------------------------- |
+| Property Name     | Type                         | Description                        |
+| ----------------- | ---------------------------- | ---------------------------------- |
 | id                | `string`                   | key is needed for selecting lang   |
 | lang              | `Translation`              | object with translations           |
 | translateCode     | `string`                   | code that is saved in localStorage |
@@ -240,8 +242,8 @@ const langs: LocaleType[] = [
 
 #### Scheduler Translation Object
 
-| Property Name | Type     |
-| ------------- | -------- |
+| Property Name | Type       |
+| ------------- | ---------- |
 | feelingEmpty  | `string` |
 | free          | `string` |
 | loadNext      | `string` |
@@ -254,8 +256,8 @@ const langs: LocaleType[] = [
 
 ##### Scheduler Topbar Object
 
-| Property Name | Type     |
-| ------------- | -------- |
+| Property Name | Type       |
+| ------------- | ---------- |
 | filters       | `string` |
 | next          | `string` |
 | prev          | `string` |
@@ -266,35 +268,35 @@ const langs: LocaleType[] = [
 
 array of chart rows with shape of
 
-| Property Name | Type | Description |
-| -------- | --------------------- | -------------------------------- |
-| id | `string` | unique row id |
-| label | `SchedulerRowLabel` | row's label, `e.g person's name, surname, icon` |
-| data | `Array<ResourceItem>` | array of `resources` |
+| Property Name | Type                    | Description                                      |
+| ------------- | ----------------------- | ------------------------------------------------ |
+| id            | `string`              | unique row id                                    |
+| label         | `SchedulerRowLabel`   | row's label,`e.g person's name, surname, icon` |
+| data          | `Array<ResourceItem>` | array of `resources`                           |
 
 ##### Left Colum Item Data
 
 data that is accessible as argument of `onItemClick` callback
 
-| Property Name | Type | Description |
-| -------- | --------------------- | -------------------------------- |
-| id | `string` | unique row id |
-| label | `SchedulerRowLabel` | row's label, `e.g person's name, surname, icon` |
+| Property Name | Type                  | Description                                      |
+| ------------- | --------------------- | ------------------------------------------------ |
+| id            | `string`            | unique row id                                    |
+| label         | `SchedulerRowLabel` | row's label,`e.g person's name, surname, icon` |
 
 ##### Resource Item
 
 item that will be visible on the grid as tile and that will be accessible as argument of `onTileClick` event
 
-| Property Name | Type | Description |
-| ----------- | ----------------- | ------------------------------------------------------------------------------------------------------- |
-| id | `string` | unique resource id |
-| title | `string` | resource title that will be displayed on resource tile |
-| subtitle | `string (optional)` | resource subtitle that will be displayed on resource tile |
-| description | `string (optional)` | resource description that will be displayed on resource tile |
-| startDate | `Date` | date for calculating start position for resource |
-| endDate | `Date` | date for calculating end position for resource |
-| occupancy | `number` | number of seconds resource takes up for given row that will be visible on resource tooltip when hovered |
-| bgColor | `string (optional)` | tile color |
+| Property Name | Type                  | Description                                                                                             |
+| ------------- | --------------------- | ------------------------------------------------------------------------------------------------------- |
+| id            | `string`            | unique resource id                                                                                      |
+| title         | `string`            | resource title that will be displayed on resource tile                                                  |
+| subtitle      | `string (optional)` | resource subtitle that will be displayed on resource tile                                               |
+| description   | `string (optional)` | resource description that will be displayed on resource tile                                            |
+| startDate     | `Date`              | date for calculating start position for resource                                                        |
+| endDate       | `Date`              | date for calculating end position for resource                                                          |
+| occupancy     | `number`            | number of seconds resource takes up for given row that will be visible on resource tooltip when hovered |
+| bgColor       | `string (optional)` | tile color                                                                                              |
 
 ### Troubleshooting
 

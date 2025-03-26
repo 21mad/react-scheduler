@@ -1,44 +1,44 @@
-import { ChangeEvent, FC, useCallback, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 import { useCalendar } from "@/context/CalendarProvider";
-import { Day, SchedulerData, SchedulerProjectData, TooltipData, ZoomLevel } from "@/types/global";
-import { getTooltipData } from "@/utils/getTooltipData";
+import { SchedulerData } from "@/types/global";
 import { usePagination } from "@/hooks/usePagination";
 import EmptyBox from "../EmptyBox";
-import { Grid, Header, LeftColumn, Tooltip } from "..";
+import { Grid, Header, LeftColumn } from "..";
 import { CalendarProps } from "./types";
 import { StyledOuterWrapper, StyledInnerWrapper, StyledEmptyBoxWrapper } from "./styles";
 
-const initialTooltipData: TooltipData = {
-  coords: { x: 0, y: 0 },
-  resourceIndex: 0,
-  disposition: {
-    taken: { hours: 0, minutes: 0 },
-    free: { hours: 0, minutes: 0 },
-    overtime: { hours: 0, minutes: 0 }
-  }
-};
+// const initialTooltipData: TooltipData = {
+//   coords: { x: 0, y: 0 },
+//   resourceIndex: 0,
+//   disposition: {
+//     taken: { hours: 0, minutes: 0 },
+//     free: { hours: 0, minutes: 0 },
+//     overtime: { hours: 0, minutes: 0 }
+//   }
+// };
 
 export const Calendar: FC<CalendarProps> = ({
   data,
   onTileClick,
   onItemClick,
   toggleTheme,
-  topBarWidth
+  topBarWidth,
+  outsideWrapperRef
 }) => {
-  const [tooltipData, setTooltipData] = useState<TooltipData>(initialTooltipData);
+  // const [tooltipData, setTooltipData] = useState<TooltipData>(initialTooltipData);
   const [filteredData, setFilteredData] = useState(data);
-  const [isVisible, setIsVisible] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
   const [searchPhrase, setSearchPhrase] = useState("");
   const {
     zoom,
-    startDate,
-    config: { includeTakenHoursOnWeekendsInDayView, showTooltip, showThemeToggle }
+    // startDate,
+    config: { showThemeToggle }
   } = useCalendar();
   const gridRef = useRef<HTMLDivElement>(null);
   const {
     page,
-    projectsPerPerson,
+    // projectsPerPerson,
     totalRowsPerPage,
     rowsPerItem,
     currentPageNum,
@@ -47,36 +47,36 @@ export const Calendar: FC<CalendarProps> = ({
     previous,
     reset
   } = usePagination(filteredData);
-  const debouncedHandleMouseOver = useRef(
-    debounce(
-      (
-        e: MouseEvent,
-        startDate: Day,
-        rowsPerItem: number[],
-        projectsPerPerson: SchedulerProjectData[][][],
-        zoom: ZoomLevel
-      ) => {
-        if (!gridRef.current) return;
-        const { left, top } = gridRef.current.getBoundingClientRect();
-        const tooltipCoords = { x: e.clientX - left, y: e.clientY - top };
-        const {
-          coords: { x, y },
-          resourceIndex,
-          disposition
-        } = getTooltipData(
-          startDate,
-          tooltipCoords,
-          rowsPerItem,
-          projectsPerPerson,
-          zoom,
-          includeTakenHoursOnWeekendsInDayView
-        );
-        setTooltipData({ coords: { x, y }, resourceIndex, disposition });
-        setIsVisible(true);
-      },
-      300
-    )
-  );
+  // const debouncedHandleMouseOver = useRef(
+  //   debounce(
+  //     (
+  //       e: MouseEvent,
+  //       startDate: Day,
+  //       rowsPerItem: number[],
+  //       projectsPerPerson: SchedulerProjectData[][][],
+  //       zoom: ZoomLevel
+  //     ) => {
+  //       if (!gridRef.current) return;
+  //       const { left, top } = gridRef.current.getBoundingClientRect();
+  //       const tooltipCoords = { x: e.clientX - left, y: e.clientY - top };
+  //       const {
+  //         coords: { x, y },
+  //         resourceIndex,
+  //         disposition
+  //       } = getTooltipData(
+  //         startDate,
+  //         tooltipCoords,
+  //         rowsPerItem,
+  //         projectsPerPerson,
+  //         zoom,
+  //         includeTakenHoursOnWeekendsInDayView
+  //       );
+  //       setTooltipData({ coords: { x, y }, resourceIndex, disposition });
+  //       setIsVisible(true);
+  //     },
+  //     300
+  //   )
+  // );
   const debouncedFilterData = useRef(
     debounce((dataToFilter: SchedulerData, enteredSearchPhrase: string) => {
       reset();
@@ -95,27 +95,27 @@ export const Calendar: FC<CalendarProps> = ({
     debouncedFilterData.current(data, phrase);
   };
 
-  const handleMouseLeave = useCallback(() => {
-    debouncedHandleMouseOver.current.cancel();
-    setIsVisible(false);
-    setTooltipData(initialTooltipData);
-  }, []);
+  // const handleMouseLeave = useCallback(() => {
+  //   debouncedHandleMouseOver.current.cancel();
+  //   setIsVisible(false);
+  //   setTooltipData(initialTooltipData);
+  // }, []);
 
-  useEffect(() => {
-    const handleMouseOver = (e: MouseEvent) =>
-      debouncedHandleMouseOver.current(e, startDate, rowsPerItem, projectsPerPerson, zoom);
-    const gridArea = gridRef.current;
+  // useEffect(() => {
+  //   const handleMouseOver = (e: MouseEvent) =>
+  //     debouncedHandleMouseOver.current(e, startDate, rowsPerItem, projectsPerPerson, zoom);
+  //   const gridArea = gridRef.current;
 
-    if (!gridArea) return;
+  //   if (!gridArea) return;
 
-    gridArea.addEventListener("mousemove", handleMouseOver);
-    gridArea.addEventListener("mouseleave", handleMouseLeave);
+  //   gridArea.addEventListener("mousemove", handleMouseOver);
+  //   gridArea.addEventListener("mouseleave", handleMouseLeave);
 
-    return () => {
-      gridArea.removeEventListener("mousemove", handleMouseOver);
-      gridArea.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, [debouncedHandleMouseOver, handleMouseLeave, projectsPerPerson, rowsPerItem, startDate, zoom]);
+  //   return () => {
+  //     gridArea.removeEventListener("mousemove", handleMouseOver);
+  //     gridArea.removeEventListener("mouseleave", handleMouseLeave);
+  //   };
+  // }, [debouncedHandleMouseOver, handleMouseLeave, projectsPerPerson, rowsPerItem, startDate, zoom]);
 
   useEffect(() => {
     if (searchPhrase) return;
@@ -133,8 +133,10 @@ export const Calendar: FC<CalendarProps> = ({
         onLoadNext={next}
         onLoadPrevious={previous}
         searchInputValue={searchPhrase}
+        setSearchInputValue={setSearchPhrase}
         onSearchInputChange={handleSearch}
         onItemClick={onItemClick}
+        outsideWrapperRef={outsideWrapperRef}
       />
       <StyledInnerWrapper>
         <Header
@@ -156,9 +158,10 @@ export const Calendar: FC<CalendarProps> = ({
             <EmptyBox />
           </StyledEmptyBoxWrapper>
         )}
-        {showTooltip && isVisible && tooltipData?.resourceIndex > -1 && (
+        {/* {showTooltip && isVisible && tooltipData?.resourceIndex > -1 && (
+          // TODO: custom tooltip
           <Tooltip tooltipData={tooltipData} zoom={zoom} />
-        )}
+        )} */}
       </StyledInnerWrapper>
     </StyledOuterWrapper>
   );

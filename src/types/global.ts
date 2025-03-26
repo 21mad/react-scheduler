@@ -53,6 +53,8 @@ export type Config = {
   theme?: Theme;
   minZoom?: (typeof allZoomLevel)[number];
   maxZoom?: (typeof allZoomLevel)[number];
+  wrapItemTitle?: boolean;
+  autoPageLoad?: boolean;
 };
 
 export type Theme = {

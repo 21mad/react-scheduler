@@ -1,13 +1,11 @@
 import { useLanguage } from "@/context/LocaleProvider";
-import { ReactComponent as EmptyBoxSvg } from "./empty-box.svg";
-import { StyledText, StyledWrapper } from "./styles";
+import { StyledText } from "./styles";
 const EmptyBox = () => {
   const { feelingEmpty } = useLanguage();
   return (
-    <StyledWrapper>
-      <EmptyBoxSvg />
+    <div className="empty-box">
       <StyledText>{feelingEmpty}</StyledText>
-    </StyledWrapper>
+    </div>
   );
 };
 

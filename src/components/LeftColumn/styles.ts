@@ -5,7 +5,6 @@ import { StyledInputWrapperProps } from "./types";
 export const StyledWrapper = styled.div`
   min-width: ${leftColumnWidth + "px"};
   max-width: ${leftColumnWidth + "px"};
-  min-height: 100vh;
   position: sticky;
   left: 0;
   background-color: ${({ theme }) => theme.colors.background};

@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { useLanguage } from "@/context/LocaleProvider";
+import { useCalendar } from "@/context/CalendarProvider";
 import Icon from "../Icon";
 import PaginationButton from "../PaginationButton/PaginationButton";
 import { StyledInput, StyledInputWrapper, StyledLeftColumnHeader, StyledWrapper } from "./styles";
@@ -14,16 +15,20 @@ const LeftColumn: FC<LeftColumnProps> = ({
   pageNum,
   pagesAmount,
   searchInputValue,
+  setSearchInputValue,
   onSearchInputChange,
-  onItemClick
+  onItemClick,
+  outsideWrapperRef
 }) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const { search } = useLanguage();
+  const { config } = useCalendar();
+  const { wrapItemTitle = true } = config;
 
   const toggleFocus = () => setIsInputFocused((prev) => !prev);
 
   return (
-    <StyledWrapper>
+    <StyledWrapper style={{ minHeight: outsideWrapperRef.current?.clientHeight }}>
       <StyledLeftColumnHeader>
         <StyledInputWrapper isFocused={isInputFocused}>
           <StyledInput
@@ -34,6 +39,13 @@ const LeftColumn: FC<LeftColumnProps> = ({
             onBlur={toggleFocus}
           />
           <Icon iconName="search" />
+          {searchInputValue && (
+            <div
+              onClick={() => setSearchInputValue("")}
+              style={{ cursor: "pointer", width: "24px", height: "24px", marginRight: "12px" }}>
+              <Icon iconName="close" fill="rgb(119, 119, 119)" />
+            </div>
+          )}
         </StyledInputWrapper>
         <PaginationButton
           intent="previous"
@@ -51,6 +63,7 @@ const LeftColumn: FC<LeftColumnProps> = ({
           key={item.id}
           rows={rows[index]}
           onItemClick={onItemClick}
+          wrapItemTitle={wrapItemTitle}
         />
       ))}
       <PaginationButton

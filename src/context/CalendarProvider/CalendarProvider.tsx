@@ -44,7 +44,8 @@ const CalendarProvider = ({
     zoom: configZoom,
     maxRecordsPerPage = 50,
     minZoom = -1,
-    maxZoom = allZoomLevel[allZoomLevel.length - 1]
+    maxZoom = allZoomLevel[allZoomLevel.length - 1],
+    autoPageLoad = true
   } = config;
   const [zoom, setZoom] = useState<ZoomLevel>(configZoom);
   const [date, setDate] = useState(dayjs());
@@ -99,11 +100,11 @@ const CalendarProvider = ({
 
   const loadMore = useCallback(
     (direction: Direction) => {
-      const cols = getVisibleCols(zoom);
+      const cols = autoPageLoad ? getVisibleCols(zoom) : getCols(zoom) - 2;
       let offset: number;
       switch (zoom) {
         case -1:
-          offset = cols * 31;
+          offset = cols * 29.3;
           break;
         case 0:
           offset = cols * 7;
@@ -115,6 +116,7 @@ const CalendarProvider = ({
           offset = Math.ceil(cols / hoursInDay);
           break;
       }
+
       const load = debounce(() => {
         switch (direction) {
           case "back":
@@ -131,7 +133,7 @@ const CalendarProvider = ({
       }, 300);
       load();
     },
-    [onRangeChange, range, zoom]
+    [autoPageLoad, onRangeChange, range, zoom]
   );
 
   useEffect(() => {
